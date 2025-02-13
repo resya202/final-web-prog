@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Milestone;
 use Illuminate\Http\Request;
 
-class MilestoneController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('milestone.index');
+        return view('user.index');
     }
 
     /**
@@ -34,7 +33,7 @@ class MilestoneController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Milestone $milestone)
+    public function show(string $id)
     {
         //
     }
@@ -42,7 +41,7 @@ class MilestoneController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Milestone $milestone)
+    public function edit(string $id)
     {
         //
     }
@@ -50,7 +49,7 @@ class MilestoneController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Milestone $milestone)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -58,7 +57,7 @@ class MilestoneController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Milestone $milestone)
+    public function destroy(string $id)
     {
         //
     }
