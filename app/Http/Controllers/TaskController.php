@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Milestone;
 use App\Models\Task;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -12,7 +14,17 @@ class TaskController extends Controller
      */
     public function index()
     {
-        return view('task.index');
+        $tasks = Task::get()
+            ->map(function($item) {
+                return [
+                    "id" => $item->id,
+                    "name" => $item->name,
+                    "start" => '2025-02-16',
+                    "end" => '2025-02-19',
+                    "progress" => $item->progress,
+                ];
+            });
+        return view('task.index', compact('tasks'));
     }
 
     /**
@@ -21,7 +33,9 @@ class TaskController extends Controller
     public function create()
     {
         $task = new Task();
-        return view('task.create', compact('task'));
+        $milestone_options = Milestone::pluck('name', 'id');
+        $assigned_options = User::pluck('name', 'id');
+        return view('task.create', compact('task','milestone_options','assigned_options'));
     }
 
     /**

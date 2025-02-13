@@ -1,11 +1,12 @@
+@import "../../node_modules/flowbite/src/themes/default";
+@import "../../node_modules/frappe-gantt/dist/frappe-gantt.css";
+@source "../../node_modules/flowbite";
+@plugin "../../node_modules/flowbite/plugin";
+@source "../../node_modules/flowbite-datepicker";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "flowbite/src/themes/default";
-
-@plugin "flowbite/plugin";
-@source "../../node_modules/flowbite";
-@source "../../node_modules/flowbite-datepicker";
 
 
 .datepicker-view .days {

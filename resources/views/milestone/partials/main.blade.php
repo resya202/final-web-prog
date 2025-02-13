@@ -1,7 +1,7 @@
 <section>
     <header>
         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-            {{ __('New Milestone') }}
+            {{ __('New Task') }}
         </h2>
 
         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
@@ -13,52 +13,19 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('task.store') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('milestone.store') }}" class="mt-6 space-y-6">
         @csrf
+        @method('post')
 
         <div>
             <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $task->name)"
+            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $milestone->name)"
                 required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
 
-
         <div>
-            <x-select-input
-                name="status"
-                label="Status"
-                :options="['TODO' => 'Todo', 'PROGRESS' => 'In Progress', 'DONE' => 'Done']"
-                selected="TODO"
-                class="mt-1 block w-full"
-            />
-            <x-input-error class="mt-2" :messages="$errors->get('status')" />
-        </div>
-
-
-        <div>
-            <x-select-input
-                name="assigned_to"
-                label="Assign to"
-                :options="$assigned_options"
-                :selected="$task->assigned_to"
-                class="mt-1 block w-full"
-            />
-            <x-input-error class="mt-2" :messages="$errors->get('assigned_to')" />
-        </div>
-
-        <div>
-            <x-select-input
-                name="milestone_id"
-                label="Milestone"
-                :options="$milestone_options"
-                :selected="$task->milestone_id"
-                class="mt-1 block w-full"
-            />
-            <x-input-error class="mt-2" :messages="$errors->get('milestone_id')" />
-        </div>
-
-        <div>
+            <x-input-label for="schedule" :value="__('Schedule Deadline')" />
             <div id="date-range-picker" date-rangepicker class="flex items-center w-full">
                 <div class="relative">
                     <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">

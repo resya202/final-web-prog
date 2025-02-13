@@ -6,6 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Milestone extends Model
 {
+    protected $guarded = ["id"];
+
+    public static function booting()
+    {
+        static::creating(function($model) {
+            $model->status = "PROGRESS";
+            $model->progress = "";
+        });
+    }
+
     public function tasks()
     {
         return $this->hasMany(Task::class);

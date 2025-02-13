@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Milestone;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class MilestoneController extends Controller
 {
@@ -12,7 +13,17 @@ class MilestoneController extends Controller
      */
     public function index()
     {
-        return view('milestone.index');
+        $milestones = Milestone::get()
+            ->map(function($item) {
+                return [
+                    "id" => $item->id,
+                    "name" => $item->name,
+                    "start" => '2025-02-16',
+                    "end" => '2025-02-19',
+                    "progress" => $item->progress,
+                ];
+            });
+        return view('milestone.index', compact('milestones'));
     }
 
     /**
@@ -20,7 +31,8 @@ class MilestoneController extends Controller
      */
     public function create()
     {
-        //
+        $milestone = new Milestone();
+        return view('milestone.create', compact('milestone'));
     }
 
     /**
@@ -28,7 +40,17 @@ class MilestoneController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => ['required','string'],
+            'start_date' => ['nullable'],
+            'end_date' => ['nullable'],
+        ]);
+
+        $milestone = new Milestone();
+        $milestone->fill($validated);
+        $milestone->save();
+        Session::flash('message', "New Milestone <b>\"$milestone->name\"</b> has created");
+        return redirect()->route('milestone.index');
     }
 
     /**
@@ -36,7 +58,8 @@ class MilestoneController extends Controller
      */
     public function show(Milestone $milestone)
     {
-        //
+        $milestone = new Milestone();
+        return view('milestone.form', compact('milestone'));
     }
 
     /**
@@ -52,7 +75,16 @@ class MilestoneController extends Controller
      */
     public function update(Request $request, Milestone $milestone)
     {
-        //
+        $validated = $request->validate([
+            'name' => ['required','string'],
+            'start_date' => ['nullable'],
+            'end_date' => ['nullable'],
+        ]);
+
+        $milestone->fill($validated);
+        $milestone->save();
+        Session::flash('message', "Milestone <b>\"$milestone->name\"</b> has updated");
+        return redirect()->route('milestone.index');
     }
 
     /**
@@ -60,6 +92,8 @@ class MilestoneController extends Controller
      */
     public function destroy(Milestone $milestone)
     {
-        //
+        $milestone->delete();
+        Session::flash('message', "Milestone <b>\"$milestone->name\"</b> succesfully deleted");
+        return redirect()->route("milestone.index");
     }
 }
