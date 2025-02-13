@@ -19,7 +19,7 @@ return new class extends Migration
             $table->dateTime("start_date")->nullable();
             $table->dateTime("end_date")->nullable();
             $table->foreignIdFor(User::class, "assigned_to")->nullable();
-            $table->dateTime("assigned_at");
+            $table->dateTime("assigned_at")->nullable();
             $table->foreignIdFor(User::class, "created_by")->nullable();
             $table->timestamps();
         });

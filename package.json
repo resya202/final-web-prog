@@ -18,6 +18,7 @@
     },
     "dependencies": {
         "flowbite": "^3.1.2",
-        "frappe-gantt": "^1.0.3"
+        "frappe-gantt": "^1.0.3",
+        "sweetalert2": "^11.16.0"
     }
 }

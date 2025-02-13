@@ -14,7 +14,11 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased">
+    <body class="font-sans antialiased relative">
+        <div class="fixed top-10 right-10">
+            @include('layouts.partials.toast')
+        </div>
+
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
             @include('layouts.navigation')
 
@@ -26,6 +30,7 @@
                     </div>
                 </header>
             @endisset
+
 
             <!-- Page Content -->
             <main>

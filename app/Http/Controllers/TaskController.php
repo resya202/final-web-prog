@@ -6,6 +6,7 @@ use App\Models\Milestone;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class TaskController extends Controller
 {
@@ -19,9 +20,10 @@ class TaskController extends Controller
                 return [
                     "id" => $item->id,
                     "name" => $item->name,
-                    "start" => '2025-02-16',
-                    "end" => '2025-02-19',
+                    "start" => $item->start_date->format('Y-m-d'),
+                    "end" => $item->end_date->format('Y-m-d'),
                     "progress" => $item->progress,
+                    "detail_url" => route("task.edit", $item->id)
                 ];
             });
         return view('task.index', compact('tasks'));
@@ -43,7 +45,19 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => ['required'],
+            'status' => ['required'],
+            'assigned_to' => ['nullable'],
+            'milestone_id' => ['nullable'],
+            'start_date' => ['required'],
+            'end_date' => ['required'],
+        ]);
+        $task = new Task;
+        $task->fill($validated);
+        $task->save();
+        Session::flash("success", "Task \"$task->name\" sucessfully added");
+        return redirect()->route("task.index");
     }
 
     /**
@@ -59,7 +73,10 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        //
+        $milestone_options = Milestone::pluck('name', 'id');
+        $assigned_options = User::pluck('name', 'id');
+        return view("task.edit", compact('task','milestone_options','assigned_options'));
+
     }
 
     /**
@@ -67,7 +84,19 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        //
+        $validated = $request->validate([
+            'name' => ['required'],
+            'status' => ['required'],
+            'assigned_to' => ['nullable'],
+            'milestone_id' => ['nullable'],
+            'start_date' => ['required','date_format:d-m-Y'],
+            'end_date' => ['required','date_format:d-m-Y'],
+        ]);
+        $task->fill($validated);
+        $task->save();
+
+        Session::flash("success", "Task: <b>$task->name</b> sucessfully updated");
+        return redirect()->route("task.index");
     }
 
     /**
@@ -75,6 +104,9 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        $task->delete();
+
+        Session::flash("success", "Task: <b>$task->name</b> sucessfully deleted");
+        return redirect()->route("task.index");
     }
 }

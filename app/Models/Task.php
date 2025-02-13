@@ -6,6 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
+    protected $guarded = ["id"];
+
+    protected $casts = [
+        "start_date" => "datetime",
+        "end_date" => "datetime"
+    ];
+
     public function assigned()
     {
         return $this->belongsTo(User::class, 'assigned_to');
