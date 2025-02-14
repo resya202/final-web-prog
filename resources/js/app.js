@@ -4,13 +4,17 @@ import InitGantt from './components/frappe-gantt';
 import {InitDatepicker, InitDaterangePicker} from './components/datepicker';
 import Alpine from 'alpinejs';
 import Swal from 'sweetalert2';
+import InitDatatable from './components/datatable';
+
 
 window.Alpine = Alpine;
+
 
 
 window.InitGantt = InitGantt
 window.InitDatepicker = InitDatepicker
 window.InitDaterangePicker = InitDaterangePicker
+window.InitDatatable = InitDatatable
 window.ToastDelayed = function(toast) {
     setTimeout(() => {
         if (toast) {

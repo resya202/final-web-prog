@@ -14,6 +14,13 @@ class UserController extends Controller
         return view('user.index');
     }
 
+    public function datatable()
+    {
+        return [
+            ''
+        ];
+    }
+
     /**
      * Show the form for creating a new resource.
      */

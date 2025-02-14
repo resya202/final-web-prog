@@ -1,8 +1,9 @@
-@import "../../node_modules/flowbite/src/themes/default";
+@import "flowbite/src/themes/default";
 @import "../../node_modules/frappe-gantt/dist/frappe-gantt.css";
+@import "datatable-tailwind.css";
 @source "../../node_modules/flowbite";
-@plugin "../../node_modules/flowbite/plugin";
 @source "../../node_modules/flowbite-datepicker";
+@plugin "../../node_modules/flowbite/plugin";
 
 @tailwind base;
 @tailwind components;

@@ -1,21 +1,21 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Edit Task') }} : <b>{{ $task->name }}</b>
         </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                 <div class="max-w-xl">
                     <section>
                         <header>
-                            <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+                            <h2 class="text-lg font-medium text-gray-900">
                                 {{ __('New Milestone') }}
                             </h2>
 
-                            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                            <p class="mt-1 text-sm text-gray-600">
                                 {{ __('Add task with milestone and assigned user.') }}
                             </p>
                         </header>
@@ -57,7 +57,7 @@
                                     <div class="relative">
                                         <div
                                             class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                            <svg class="w-4 h-4 text-gray-500" aria-hidden="true"
                                                 xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                                                 viewBox="0 0 20 20">
                                                 <path
@@ -65,7 +65,7 @@
                                             </svg>
                                         </div>
                                         <input id="datepicker-range-start" name="start_date" type="text"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 "
                                             placeholder="Select date start"
                                             value="{{ $task->start_date->format('d-m-Y') }}">
                                     </div>
@@ -73,7 +73,7 @@
                                     <div class="relative">
                                         <div
                                             class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                            <svg class="w-4 h-4 text-gray-500" aria-hidden="true"
                                                 xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                                                 viewBox="0 0 20 20">
                                                 <path
@@ -81,7 +81,7 @@
                                             </svg>
                                         </div>
                                         <input id="datepicker-range-end" name="end_date" type="text"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 "
                                             placeholder="Select date end"
                                             value="{{ $task->end_date->format('d-m-Y') }}">
                                     </div>
