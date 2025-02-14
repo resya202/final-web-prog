@@ -1,9 +1,12 @@
-import { DataTable } from "simple-datatables";
+import DataTable from "datatables.net-dt";
 
 export default function InitDatatable(el)
 {
     const config = {
-        ajax: el.getAttribute("src")
+        searchable: false,
+        // ajax: el.getAttribute("src")
     }
-    var dt = new DataTable(el)
+
+    const table = new DataTable(el, config)
 }
+

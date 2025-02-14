@@ -17,5 +17,15 @@ export default {
         },
     },
 
-    plugins: [forms],
+
+    safelist: [
+        'grid-cols-7',
+    ],
+
+    plugins: [
+        forms,
+        require('flowbite/plugin')({
+            datatables: true,
+        }),
+    ],
 };
