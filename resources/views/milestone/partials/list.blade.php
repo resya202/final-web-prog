@@ -20,9 +20,11 @@
                                     <x-button variant=primary :href="route('milestone.show', $milestone->id)">
                                         Detail
                                     </x-button>
+                                    @if (\Auth::user()->role_name == 'Admin')
                                     <x-button variant=secondary :href="route('milestone.edit', $milestone->id)">
                                         Edit
                                     </x-button>
+                                    @endif
                                 </td>
                                 <td>{{ $milestone->name }}</td>
                                 <td>{{ $milestone->status }}</td>

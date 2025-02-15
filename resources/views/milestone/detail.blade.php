@@ -17,8 +17,10 @@
                         <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="$milestone->name"
                             readonly />
                     </div>
+                    @if (\Auth::user()->role_name == 'Admin')
                     <x-button variant=danger :href="route('milestone.destroy', $milestone->id)">Delete Milestone</x-button>
                     <x-button variant=primary :href="route('milestone.edit', $milestone->id)">Edit Milestone</x-button>
+                    @endif
 
                 </div>
             </div>

@@ -5,8 +5,10 @@
         </h2>
         <div class="ml-auto">
             <x-button variant="light" :href="route('task.index')">Back</x-button>
+            @if (\Auth::user()->role_name == 'Admin')
             <x-button variant="danger" :href="route('task.destroy', $task->id)">Delete Task</x-button>
             <x-button variant="primary" :href="route('task.edit', $task->id)">Edit Task</x-button>
+            @endif
         </div>
     </x-slot>
 
@@ -27,7 +29,7 @@
 
 
                             <div class="mb-2">
-                                <x-select-input name="status" label="Status" :options="['TODO' => 'Todo', 'PROGRESS' => 'In Progress', 'DONE' => 'Done']" :selected="$task->status"
+                                <x-select-input readonly="true" name="status" label="Status" :options="['TODO' => 'Todo', 'PROGRESS' => 'In Progress', 'DONE' => 'Done']" :selected="$task->status"
                                     class="mt-1 block w-full" readonly />
                                 <x-input-error class="mt-2" :messages="$errors->get('status')" />
                             </div>

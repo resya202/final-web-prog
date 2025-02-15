@@ -1,4 +1,3 @@
-
 <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -21,14 +20,16 @@
                                     <x-button variant=primary :href="route('task.show', $task->id)">
                                         Detail
                                     </x-button>
-                                    <x-button variant=secondary :href="route('task.edit', $task->id)">
-                                        Edit
-                                    </x-button>
+                                    @if (\Auth::user()->role_name == 'Admin')
+                                        <x-button variant=secondary :href="route('task.edit', $task->id)">
+                                            Edit
+                                        </x-button>
+                                    @endif
                                 </td>
                                 <td>{{ $task->name }}</td>
                                 <td>{{ $task->status }}</td>
-                                <td>{{ optional($task->assigned)->name ?? "-" }}</td>
-                                <td>{{ optional($task->milestone)->name ?? "-"}}</td>
+                                <td>{{ optional($task->assigned)->name ?? '-' }}</td>
+                                <td>{{ optional($task->milestone)->name ?? '-' }}</td>
                                 <td>{{ $task->end_date }}</td>
                             </tr>
                         @endforeach
