@@ -22,7 +22,6 @@
         "flowbite": "^3.1.2",
         "frappe-gantt": "^1.0.3",
         "jquery": "^3.7.1",
-        "simple-datatables": "^10.0.0",
         "sweetalert2": "^11.16.0"
     }
 }

@@ -21,6 +21,7 @@ Route::middleware(['auth'])
         Route::get('/user/datatable', [UserController::class, 'datatable'])->name('user.datatable');
         Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
         Route::post('/user', [UserController::class, 'store'])->name('user.store');
+        Route::get('/user/{user}', [UserController::class, 'show'])->name('user.show');
         Route::get('/user/{user}/edit', [UserController::class, 'edit'])->name('user.edit');
         Route::get('/user/{user}/update', [UserController::class, 'update'])->name('user.update');
         Route::get('/user/{user}/destroy', [UserController::class, 'destroy'])->name('user.destroy');

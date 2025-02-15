@@ -16,10 +16,8 @@ export default {
             },
         },
     },
-
-
     safelist: [
-        'grid-cols-7',
+        'grid-cols-7'
     ],
 
     plugins: [

@@ -9,8 +9,6 @@ import InitDatatable from './components/datatable';
 
 window.Alpine = Alpine;
 
-
-
 window.InitGantt = InitGantt
 window.InitDatepicker = InitDatepicker
 window.InitDaterangePicker = InitDaterangePicker

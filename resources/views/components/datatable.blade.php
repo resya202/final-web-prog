@@ -1,3 +1,7 @@
+@props([
+    'src' => null
+])
+
 <div class="datatable-wrapper" >
     <table class="table" x-init="InitDatatable($el)" src="{{ $src }}">
         <thead>
