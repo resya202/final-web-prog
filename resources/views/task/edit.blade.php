@@ -12,12 +12,8 @@
                     <section>
                         <header>
                             <h2 class="text-lg font-medium text-gray-900">
-                                {{ __('New Milestone') }}
+                                {{ __('Edit Task') }}
                             </h2>
-
-                            <p class="mt-1 text-sm text-gray-600">
-                                {{ __('Add task with milestone and assigned user.') }}
-                            </p>
                         </header>
 
                         <form method="post" action="{{ route('task.update', $task->id) }}" class="mt-6 space-y-6">
@@ -89,7 +85,6 @@
                             </div>
 
                             <div class="flex items-center gap-4">
-                                <x-danger-button @submit.prevent="InitSwal($event)" target="{{ route('task.destroy', $task->id) }}">{{ __('Delete') }}</x-danger-button>
                                 <x-primary-button>{{ __('Save') }}</x-primary-button>
                             </div>
                         </form>

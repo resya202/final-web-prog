@@ -15,7 +15,8 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::get()
+        $tasks = Task::with('assigned','milestone')->latest()->get();
+        $gantt_tasks = $tasks
             ->map(function($item) {
                 return [
                     "id" => $item->id,
@@ -26,7 +27,7 @@ class TaskController extends Controller
                     "detail_url" => route("task.edit", $item->id)
                 ];
             });
-        return view('task.index', compact('tasks'));
+        return view('task.index', compact('tasks','gantt_tasks'));
     }
 
     /**
@@ -65,7 +66,7 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        //
+        return view('task.detail', compact('task'));
     }
 
     /**
