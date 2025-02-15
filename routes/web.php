@@ -23,7 +23,7 @@ Route::middleware(['auth'])
         Route::post('/user', [UserController::class, 'store'])->name('user.store');
         Route::get('/user/{user}', [UserController::class, 'show'])->name('user.show');
         Route::get('/user/{user}/edit', [UserController::class, 'edit'])->name('user.edit');
-        Route::get('/user/{user}/update', [UserController::class, 'update'])->name('user.update');
+        Route::put('/user/{user}/update', [UserController::class, 'update'])->name('user.update');
         Route::get('/user/{user}/destroy', [UserController::class, 'destroy'])->name('user.destroy');
 
         Route::get('/task', [TaskController::class, 'index'])->name('task.index');

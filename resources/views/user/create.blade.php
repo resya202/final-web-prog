@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Task') }}
+            {{ __('Create New User') }}
         </h2>
         <div class="ml-auto">
             <x-button variant=light :href="route('user.index')">Cancel</x-button>
