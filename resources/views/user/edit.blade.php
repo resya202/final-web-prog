@@ -40,8 +40,14 @@
                             <div>
                                 <x-input-label for="password" value="{{ __('Password') }}*" />
                                 <x-text-input id="password" name="password" type="password" class="mt-1 block w-full"
-                                    required autocomplete="new-password" />
+                                    />
                                 <x-input-error class="mt-2" :messages="$errors->get('password')" />
+                            </div>
+
+                            <div class="mb-2">
+                                <x-select-input name="role" label="Role" :options="['Admin' => 'Admin', 'Member' => 'Member']" :selected="$user->role_name"
+                                    class="mt-1 block w-full" readonly />
+                                <x-input-error class="mt-2" :messages="$errors->get('role')" />
                             </div>
 
                             <div class="flex items-center gap-4">

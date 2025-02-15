@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
@@ -44,13 +45,15 @@ class UserController extends Controller
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', Password::defaults()],
+            'password' => ['nullable', Password::defaults()],
+            'role' => ['required', Rule::in(['Admin', 'Member']),]
         ]);
 
         $user = new User();
         $user->fill($validated);
         $user->password = Hash::make($validated['password']);
         $user->save();
+        $user->syncRoles($validated['role']);
 
         Session::flash("success", "User \"$user->name\" successfully added");
         return redirect()->route("user.index");
@@ -82,13 +85,16 @@ class UserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $user->id],
             'password' => ['nullable', Password::defaults()],
+            'role' => ['required', Rule::in(['Admin', 'Member']),]
         ]);
-
-        $user->fill($validated);
         if ($request->filled('password')) {
-            $user->password = Hash::make($validated['password']);
+            $validated['password'] = Hash::make($validated['password']);
+        } else {
+            unset($validated['password']);
         }
+        $user->fill($validated);
         $user->save();
+        $user->syncRoles($validated['role']);
 
         Session::flash("success", "User: <b>$user->name</b> successfully updated");
         return redirect()->route("user.index");

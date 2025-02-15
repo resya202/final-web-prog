@@ -17,6 +17,7 @@
                             <td>Action</td>
                             <td>Name</td>
                             <td>Email</td>
+                            <td>Role</td>
                             <td>Created At</td>
                         </x-slot>
                         <x-slot name="content">
@@ -32,6 +33,7 @@
                                     </td>
                                     <td>{{$user->name}}</td>
                                     <td>{{$user->email}}</td>
+                                    <td>{{$user->role_name ?? "-"}}</td>
                                     <td>{{$user->created_at}}</td>
                                 </tr>
                             @endforeach
