@@ -24,6 +24,7 @@
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
 
+{{--
         <div>
             <x-input-label for="schedule" :value="__('Schedule Deadline')" />
             <div id="date-range-picker" date-rangepicker class="flex items-center w-full">
@@ -54,7 +55,7 @@
                 </div>
             </div>
         </div>
-
+ --}}
 
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>

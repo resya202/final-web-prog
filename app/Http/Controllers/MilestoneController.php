@@ -13,7 +13,8 @@ class MilestoneController extends Controller
      */
     public function index()
     {
-        $milestones = Milestone::get()
+        $milestones = Milestone::get();
+        $gantt_milestones = $milestones
             ->map(function($item) {
                 return [
                     "id" => $item->id,
@@ -23,7 +24,7 @@ class MilestoneController extends Controller
                     "progress" => $item->progress,
                 ];
             });
-        return view('milestone.index', compact('milestones'));
+        return view('milestone.index', compact('milestones','gantt_milestones'));
     }
 
     /**
@@ -49,7 +50,7 @@ class MilestoneController extends Controller
         $milestone = new Milestone();
         $milestone->fill($validated);
         $milestone->save();
-        Session::flash('message', "New Milestone <b>\"$milestone->name\"</b> has created");
+        Session::flash('success', "New Milestone <b>\"$milestone->name\"</b> has created");
         return redirect()->route('milestone.index');
     }
 
@@ -58,8 +59,8 @@ class MilestoneController extends Controller
      */
     public function show(Milestone $milestone)
     {
-        $milestone = new Milestone();
-        return view('milestone.form', compact('milestone'));
+        $tasks = $milestone->tasks()->latest()->get();
+        return view('milestone.detail', compact('milestone','tasks'));
     }
 
     /**
@@ -67,7 +68,7 @@ class MilestoneController extends Controller
      */
     public function edit(Milestone $milestone)
     {
-        //
+        return view('milestone.edit', compact('milestone'));
     }
 
     /**
@@ -80,10 +81,9 @@ class MilestoneController extends Controller
             'start_date' => ['nullable'],
             'end_date' => ['nullable'],
         ]);
-
         $milestone->fill($validated);
         $milestone->save();
-        Session::flash('message', "Milestone <b>\"$milestone->name\"</b> has updated");
+        Session::flash('success', "Milestone <b>\"$milestone->name\"</b> has updated");
         return redirect()->route('milestone.index');
     }
 
@@ -93,7 +93,7 @@ class MilestoneController extends Controller
     public function destroy(Milestone $milestone)
     {
         $milestone->delete();
-        Session::flash('message', "Milestone <b>\"$milestone->name\"</b> succesfully deleted");
+        Session::flash('success', "Milestone <b>\"$milestone->name\"</b> succesfully deleted");
         return redirect()->route("milestone.index");
     }
 }

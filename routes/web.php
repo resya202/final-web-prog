@@ -37,8 +37,9 @@ Route::middleware(['auth'])
         Route::get('/milestone', [MilestoneController::class, 'index'])->name('milestone.index');
         Route::get('/milestone/create', [MilestoneController::class, 'create'])->name('milestone.create');
         Route::post('/milestone', [MilestoneController::class, 'store'])->name('milestone.store');
+        Route::get('/milestone/{milestone}', [MilestoneController::class, 'show'])->name('milestone.show');
         Route::get('/milestone/{milestone}/edit', [MilestoneController::class, 'edit'])->name('milestone.edit');
-        Route::get('/milestone/{milestone}/update', [MilestoneController::class, 'update'])->name('milestone.update');
+        Route::put('/milestone/{milestone}/update', [MilestoneController::class, 'update'])->name('milestone.update');
         Route::get('/milestone/{milestone}/destroy', [MilestoneController::class, 'destroy'])->name('milestone.destroy');
 });
 
